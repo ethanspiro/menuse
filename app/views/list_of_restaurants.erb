@@ -1,0 +1,14 @@
+<div class="list_of_all_restaurants">
+  <h2>Restaurants</h2>
+  <dl class="dl-horizontal">
+    <% @restaurants.each do |restaurant| %>
+    <dt><a href="restaurants/<%=restaurant.id%>"><%=restaurant.name%></a></dt>
+    <dd><%=restaurant.description%></dd>
+    <dd><b>Locations:</b></dd>
+    <%restaurant.locations.each do |location|%>
+    <dd><%=location.address%></dd>
+    <%end%>
+    <br>
+    <%end%>
+  </dl>
+</div>

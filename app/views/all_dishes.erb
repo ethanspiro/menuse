@@ -1,0 +1,46 @@
+<h3 class="food_header">Where are you?</h3>
+
+<form class="" role="form" action="/" method="post">
+  <div class="form-group" id="search_container">
+    <input type="text" name="search_address" class="form-control" id="search_food" placeholder="search" onfocus="this.placeholder = ''" onblur="this.placeholder = 'search'">
+  </div>
+</form><br>
+
+<div class="pictures_main">
+  <div class="row">
+    <% @items.each do |item| %>
+    <div class="col-xs-4">
+
+      <div class="custom_captioning">
+
+        <a href="<%=item.picture%>" data-lightbox="my_gallery" data-title="<%=item.title%> :: <%=item.description%> :: $<%=item.price%>" class="thumbnail">
+          <img src='<%=item.picture%>' alt="125x125">
+        </a>
+
+        <div class="caption">
+          <div class="blur"></div>
+          <div class="caption-text">
+            <h3 style="border-top:2px solid white; border-bottom:2px solid white; padding:10px;"><%=item.title%></h3>
+            <p><%=item.description%></p>
+            <p>$<%=item.price%></p>
+            <%if session[:user_id]%>
+
+            <form class="pin_form" action="/users/<%=session[:user_id]%>/pins" method="post">
+              <%if Pin.exists?(:user_id => session[:user_id], :item_id => item.id)%>
+              <img class="small_heart" src="/images/heart.png" />
+              <%else%>
+              <input type="hidden" name="item_id_for_pin" value="<%=item.id%>">
+              <button class="btn btn-default"><span class="glyphicon glyphicon-heart"> Pin </span></button>
+              <%end%>
+
+            <%end%>
+              <a class="btn btn-default" href="/restaurants/<%=item.restaurant.id%>"><span class="glyphicon
+                glyphicon-search"> Menu </span></a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%end%>
+    </div>
+  </div>

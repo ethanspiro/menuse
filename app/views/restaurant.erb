@@ -1,0 +1,161 @@
+<% if session[:restaurant_id] && session[:restaurant_id] == @restaurant.id %>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4" id="green_box">
+
+      <br><br>
+
+      <form class="form-horizontal" action="/restaurants/<%=session[:restaurant_id]%>/items" method="post">
+        <fieldset>
+
+          <!-- Form Name -->
+          <legend>Add a Dish</legend>
+
+          <!-- File Button -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="image_of_food">Image</label>
+            <div class="col-md-4">
+              <input id="image_of_food" name="image_of_food" class="input-file" type="file">
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="title">Title</label>
+            <div class="col-md-6">
+              <input id="title" name="title" type="text" placeholder="title" class="form-control input-md" required="">
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="price">Price</label>
+            <div class="col-md-4">
+              <input id="price" name="price" type="text" placeholder="price" class="form-control input-md" required="">
+            </div>
+          </div>
+
+          <!-- Textarea -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="description">Description</label>
+            <div class="col-md-4">
+              <textarea class="form-control" id="description" name="description"></textarea>
+            </div>
+          </div>
+
+          <!-- Button -->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="submit_button"></label>
+            <div class="col-md-4">
+              <button id="submit_button" name="submit_button" class="btn btn-success">Add Dish</button>
+            </div>
+          </div>
+
+        </fieldset>
+      </form>
+      <br><br>
+    </div>
+
+    <div class="col-md-8" id="red_box">
+      <p>
+        <div class="pictures_main">
+          <div class="row">
+            <% @items.each do |item| %>
+            <div class="col-xs-4">
+
+              <a href="<%=item.picture%>" data-lightbox="my_gallery" data-title="<%=item.title%> :: <%=item.description%> :: $<%=item.price%>" class="thumbnail">
+                <img src='<%=item.picture%>' alt="125x125">
+              </a>
+
+              <div class="edit_food">
+                <form class="form-horizontal" action="/restaurants/<%=session[:restaurant_id]%>/items/<%=item.id%>" method="post">
+                  <input type='hidden' name='_method' value='put'>
+                  <fieldset>
+
+                    <div class="form-group">
+                      <input id="title" name="title" type="text" value="<%=item.title%>" class="form-control input-md">
+                    </div>
+
+                    <div class="form-group">
+                      <input id="price" name="price" type="text" value="<%=item.price%>" class="form-control input-md">
+                    </div>
+
+                    <div class="form-group">
+                      <textarea class="form-control" name="description"><%=item.description%></textarea>
+                    </div>
+
+                    <div class="form-group">
+                      <button id="submit_button" name="submit_button" class="btn btn-success">Update</button>
+                    </div>
+                  </fieldset>
+                </form>
+                <form class="form-horizontal" action="/restaurants/<%=session[:restaurant_id]%>/items/<%=item.id%>" method="post">
+                  <input type='hidden' name='_method' value='delete'>
+                  <div class="form-group">
+                    <button id="delete_button" name="delete_button" class="btn btn-danger">Delete</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <%end%>
+          </div>
+        </div>
+
+      </p>
+    </div>
+  </div>
+</div>
+
+<% else %>
+
+
+<div id="restaurant_title_block">
+  <h2><%=@restaurant.name%></h2>
+  <h4><%=@restaurant.description%></h4>
+</div>
+
+<div class="dropdown" id="location_restaurant">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+    Locations
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+    <%@restaurant.locations.each do |location|%>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="https://maps.google.com?q=<%=location.address.gsub(' ','+')%>"><%=location.address%></a></li>
+    <%end%>
+  </ul>
+</div>
+
+<div class="pictures_main">
+  <div class="row">
+    <% @items.each do |item| %>
+    <div class="col-xs-4">
+
+      <div class="custom_captioning">
+
+        <a href="<%=item.picture%>" data-lightbox="my_gallery" data-title="<%=item.title%> :: <%=item.description%> :: $<%=item.price%>" class="thumbnail">
+          <img src='<%=item.picture%>' alt="125x125">
+        </a>
+
+        <div class="caption">
+          <div class="blur"></div>
+          <div class="caption-text">
+            <h3 style="border-top:2px solid white; border-bottom:2px solid white; padding:10px;"><%=item.title%></h3>
+            <p><%=item.description%></p>
+            <p>$<%=item.price%></p>
+            <%if session[:user_id]%>
+            <form class="pin_form" action="/users/<%=session[:user_id]%>/pins" method="post">
+              <input type="text" name="item_id_for_pin" value="<%=item.id%>" class="hidden">
+              <button class="btn btn-default"><span class="glyphicon glyphicon-heart"> Pin </span></button>
+            </form>
+            <%end%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%end%>
+  </div>
+</div>
+
+<% end %>

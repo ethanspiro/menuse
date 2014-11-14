@@ -1,0 +1,30 @@
+<div class="pictures_main">
+  <div class="row">
+    <% @pins.each do |pin| %>
+    <div class="col-xs-4">
+
+      <div class="custom_captioning">
+
+        <a href="<%=pin.picture%>" data-lightbox="my_gallery" data-title="<%=pin.title%> :: <%=pin.description%> :: $<%=pin.price%>" class="thumbnail">
+          <img src='<%=pin.picture%>' alt="125x125">
+        </a>
+
+        <div class="caption">
+          <div class="blur"></div>
+          <div class="caption-text">
+            <h3 style="border-top:2px solid white; border-bottom:2px solid white; padding:10px;"><%=pin.title%></h3>
+            <p><%=pin.description%></p>
+            <p>$<%=pin.price%></p>
+            <form class="pin_delete_form" action="/users/<%=session[:user_id]%>/pins" method="post">
+              <input type='hidden' name='_method' value='delete'>
+              <input type="hidden" name="pin_id_for_delete" value="<%=pin.id%>">
+              <button class="btn btn-default"><span class="glyphicon glyphicon-remove"> Unpin </span></button>
+              <a class="btn btn-default" href="/restaurants/<%=pin.restaurant.id%>"><span class="glyphicon glyphicon-search"> Menu </span></a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%end%>
+  </div>
+</div>

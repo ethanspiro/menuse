@@ -1,0 +1,189 @@
+body { padding-top: 70px; }
+
+.container {
+  margin: 20px auto;
+  width: 800px;
+  padding: 0px 20px 20px 20px;
+}
+
+#nav_image {
+  height: 56px;
+  width: 100px;
+  margin-left: -20px;
+  margin-top: -20px;
+}
+
+.navbar-default {
+  background-color: #31262C;
+  border: 1px solid #31262C;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: #EDE9E9;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+  color: #C55758;
+}
+
+
+.food_header {
+  text-align: center;
+}
+
+#search_container{
+  width: 100%;
+}
+
+#search_food {
+  margin: 0 auto;
+  width: 40%;
+  text-align: center;
+}
+
+.pictures_main {
+  width: 90%;
+  margin: auto;
+}
+
+#red_box {
+  float: right;
+  text-align: center;
+  height: auto;
+}
+
+#green_box {
+  position: fixed;
+  text-align: center;
+  height: auto;
+  margin-left: 20px;
+}
+
+#description {
+  height: 200px;
+  width: 175px;
+}
+
+.edit_food {
+  margin: auto;
+  width: 90%;
+}
+
+.list_of_all_restaurants{
+  width: 50%;
+  margin: auto;
+}
+
+#restaurant_title_block {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+#sign_up_with_google {
+  padding-bottom: 50px;
+  padding-top: 20px;
+}
+
+#form_user {
+  padding-top: 20px;
+}
+
+
+hr.style-eight {
+    padding: 0;
+    border: none;
+    border-top: medium double #333;
+    color: #333;
+    text-align: center;
+}
+hr.style-eight:after {
+    content: "§";
+    display: inline-block;
+    position: relative;
+    top: -0.7em;
+    font-size: 1.5em;
+    padding: 0 0.25em;
+    background: white;
+}
+
+#google_login {
+  margin-left: -20px;
+}
+
+#welcome_message {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+/*
+pink: #C55758;
+purple: #5E3B53;
+green: #92946F;
+black: #31262C;
+yellow: #D28B5F;
+*/
+
+.custom_captioning{
+  padding: 0px;
+  position: relative;
+  overflow: hidden;
+}
+
+.custom_captioning:hover .caption{
+  opacity: 1;
+  transform: translateY(-260px);
+  -webkit-transform:translateY(-260px);
+  -moz-transform:translateY(-260px);
+  -ms-transform:translateY(-260px);
+  -o-transform:translateY(-260px);
+}
+.custom_captioning img{
+  z-index: 4;
+}
+.custom_captioning .caption{
+  position: absolute;
+  -webkit-transition:all 0.1s ease-in-out;
+  -moz-transition:all 0.1s ease-in-out;
+  -o-transition:all 0.1s ease-in-out;
+  -ms-transition:all 0.1s ease-in-out;
+  transition:all 0.1s ease-in-out;
+  width: 100%;
+}
+
+.custom_captioning .blur{
+  background-color: rgba(0,0,0,0.7);
+  height: 300px;
+  z-index: 5;
+  position: absolute;
+  width: 100%;
+}
+
+.custom_captioning .caption-text{
+  z-index: 10;
+  color: #fff;
+  position: absolute;
+  height: 300px;
+  text-align: center;
+  top:-20px;
+  width: 100%;
+}
+
+a.thumbnail:hover {
+  border-color: #AAAAA2;
+}
+
+.small_heart {
+  max-width: 9%;
+  padding-right: 5px;
+}
+
+.sub_container {
+  margin: auto;
+  text-align: center;
+}
+
+.prof_pic {
+  min-width: 100px;
+  border-radius: 50px;
+}
