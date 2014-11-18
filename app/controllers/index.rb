@@ -184,8 +184,11 @@ post '/users/:user_id/pins' do
 
   pin = Pin.create(:user_id => userid, :item_id => itemid)
 
-  content_type :json
-  pin.to_json
+  if request.xhr?
+    content_type :json
+   pin.to_json
+  end
+
 end
 
 delete '/users/:user_id/pins' do
