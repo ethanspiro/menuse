@@ -59,7 +59,7 @@ $(document).ready(function() {
       pin_button = this
       var the_data = $(this).serialize();
       $.ajax({
-        url: 'https://' + this.action,
+        url: this.action,
         type: 'post',
         data: the_data
       })
