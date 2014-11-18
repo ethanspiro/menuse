@@ -49,7 +49,6 @@ $(document).ready(function() {
     bindEvents();
 
     function bindEvents() {
-      console.log("in the bind events function");
       $('.pin_form').on('submit', pinItem);
       $('.pin_delete_form').on('submit', deletePin);
     }
@@ -57,11 +56,10 @@ $(document).ready(function() {
     //~~~~~~~~~~~ pin an item ~~~~~~~~~~~~
     function pinItem(e) {
       e.preventDefault();
-      e.stopPropagation();
       pin_button = this
       var the_data = $(this).serialize();
       $.ajax({
-        url: this.action,
+        url: 'https://' + this.action,
         type: 'post',
         data: the_data
       })
@@ -84,7 +82,6 @@ $(document).ready(function() {
         data: the_data
       })
       .done(function(server_data) {
-        console.log("ajax - success");
         delete_button.parentElement.parentElement.parentElement.parentElement.remove();
       })
       .fail(function() {

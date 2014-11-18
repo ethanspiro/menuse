@@ -186,7 +186,7 @@ post '/users/:user_id/pins' do
 
   if request.xhr?
     content_type :json
-   pin.to_json
+    pin.to_json
   end
 
 end
