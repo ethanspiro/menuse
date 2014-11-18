@@ -182,11 +182,6 @@ post '/users/:user_id/pins' do
   itemid = params[:item_id_for_pin]
   userid = session[:user_id]
 
-  p "hello"
-  p params
-  p itemid
-  p userid
-
   pin = Pin.create(:user_id => userid, :item_id => itemid)
 
   content_type :json
@@ -194,7 +189,6 @@ post '/users/:user_id/pins' do
 end
 
 delete '/users/:user_id/pins' do
-  p "hey in the delete route"
   pin = Pin.where(:user_id => session[:user_id], :item_id => params[:pin_id_for_delete]).first
   pin.destroy
 
