@@ -57,6 +57,7 @@ $(document).ready(function() {
     //~~~~~~~~~~~ pin an item ~~~~~~~~~~~~
     function pinItem(e) {
       e.preventDefault();
+      e.stopPropagation()
       pin_button = this
       var the_data = $(this).serialize();
       $.ajax({
