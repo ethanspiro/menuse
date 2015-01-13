@@ -8,7 +8,6 @@ class CreateItems < ActiveRecord::Migration
 
       #fk
       t.integer :restaurant_id
-      t.integer :category_id
 
       t.timestamps
     end
